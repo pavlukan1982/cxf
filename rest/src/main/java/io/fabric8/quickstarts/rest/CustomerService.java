@@ -75,7 +75,7 @@ public class CustomerService {
      */
     @GET
     @Path("/customers/{id}/")
-    @Produces("application/xml")
+    @Produces("media/jpeg")
     @ApiOperation(value = "Find Customer by ID", notes = "More notes about this method", response = Customer.class)
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = "Invalid ID supplied"),
