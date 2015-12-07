@@ -15,18 +15,11 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<features name="quickstart-rest-${project.version}"
-          xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
-
-  <repository>mvn:org.apache.cxf.karaf/apache-cxf/${cxf-version}/xml/features</repository>
-  <repository>mvn:io.fabric8/fabric8-karaf/${project.version}/xml/features</repository>
+<features name="quickstart-rest-${project.version}">
 
   <feature name="quickstart-rest" version="${project.version}" resolver="(obr)">
-      <feature version="${project.version}">fabric-cxf</feature>
-      <feature version="${project.version}">fabric-cxf-registry</feature>
-      <feature version="${project.version}">swagger</feature>
       <feature version="${cxf-version-range}">cxf-jaxrs</feature>
-      <bundle>mvn:io.fabric8.quickstarts/rest/${project.version}</bundle>
+      <bundle>mvn:org.jboss.quickstarts.fuse/cxf-rest/${project.version}</bundle>
   </feature>
 
 </features>
