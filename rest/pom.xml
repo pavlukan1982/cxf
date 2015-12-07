@@ -16,7 +16,7 @@
     limitations under the License.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.jboss.quickstarts.fuse</groupId>
@@ -24,22 +24,22 @@
     <version>6.2.0.redhat-133</version>
   </parent>
 
-    <groupId>org.jboss.quickstarts.fuse</groupId>
-    <artifactId>cxf-rest</artifactId>
-    <version>6.2.0.redhat-133</version>
-    <packaging>bundle</packaging>
-    <name>JBoss Fuse Quickstart: rest</name>
-    <description>RESTful WebService Example using JAX-RS with JBoss Fuse</description>
+  <groupId>org.jboss.quickstarts.fuse</groupId>
+  <artifactId>cxf-rest</artifactId>
+  <version>6.2.0.redhat-133</version>
+  <packaging>bundle</packaging>
+  <name>JBoss Fuse Quickstart: rest</name>
+  <description>RESTful WebService Example using JAX-RS with JBoss Fuse</description>
 
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <distribution>repo</distribution>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-        </license>
-    </licenses>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <distribution>repo</distribution>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+    </license>
+  </licenses>
 
-    <repositories>
+  <repositories>
     <repository>
       <id>fuse-public-repository</id>
       <name>FuseSource Community Release Repository</name>
@@ -54,7 +54,7 @@
     </repository>
   </repositories>
 
-    <pluginRepositories>
+  <pluginRepositories>
     <pluginRepository>
       <id>fuse-public-repository</id>
       <name>FuseSource Community Release Repository</name>
@@ -69,11 +69,11 @@
     </pluginRepository>
   </pluginRepositories>
 
-    <properties>
+  <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.target>1.7</maven.compiler.target>
     <maven.compiler.source>1.7</maven.compiler.source>
-      <cxf-version>3.0.2</cxf-version>
+    <cxf-version>3.0.2</cxf-version>
     <version.maven-surefire-plugin>2.15</version.maven-surefire-plugin>
     <version.maven-bundle-plugin>2.3.7</version.maven-bundle-plugin>
     <maven-resources-plugin-version>2.6</maven-resources-plugin-version>
@@ -82,18 +82,18 @@
 
 
     <!-- the version of the BOM, defining all the dependency versions -->
-    <fabric.version>1.2.0-SNAPSHOT</fabric.version>
+    <fabric.version>1.2.0.redhat-133</fabric.version>
 
     <!-- fabric8 deploy profile configuration -->
     <fabric8.profile>quickstarts-cxf-rest</fabric8.profile>
     <fabric8.parentProfiles>feature-cxf</fabric8.parentProfiles>
     <fabric8.features>cxf-jaxrs swagger</fabric8.features>
 
-      <!-- the version of the JBoss Fuse BOM, defining all the dependency versions -->
-      <jboss.fuse.bom.version>6.2.0.redhat-133</jboss.fuse.bom.version>
+    <!-- the version of the JBoss Fuse BOM, defining all the dependency versions -->
+    <jboss.fuse.bom.version>6.2.0.redhat-133</jboss.fuse.bom.version>
   </properties>
 
-    <dependencyManagement>
+  <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>org.jboss.fuse.bom</groupId>
@@ -107,11 +107,11 @@
         <artifactId>swagger-jaxrs_2.10</artifactId>
         <version>1.3.0</version>
         <optional>true</optional>
-    </dependency>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
-    <dependencies>
+  <dependencies>
     <!--
         For coding the example, we don't actually depend on any CXF classes - we only use the JAX-RS (JSR-339)
         standard annotations and API
@@ -166,9 +166,16 @@
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-rt-frontend-jaxrs</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
-    <build>
+  <build>
     <finalName>shared</finalName>
 
     <resources>
@@ -211,7 +218,7 @@
               com.fasterxml.jackson.jaxrs.json, javax.ws.rs.ext,*
             </Import-Package>
             <Import-Service>org.apache.aries.blueprint.NamespaceHandler;
-                osgi.service.blueprint.namespace=http://cxf.apache.org/transports/http/configuration
+              osgi.service.blueprint.namespace=http://cxf.apache.org/transports/http/configuration
             </Import-Service>
             <Export-Package>
               io.fabric8.quickstarts.rest
@@ -317,7 +324,7 @@
     </plugins>
   </build>
 
-    <profiles>
+  <profiles>
     <profile>
       <id>test</id>
       <properties>
