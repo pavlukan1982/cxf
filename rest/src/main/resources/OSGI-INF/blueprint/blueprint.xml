@@ -24,35 +24,37 @@
 -->
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:jaxrs="http://cxf.apache.org/blueprint/jaxrs"
-    xmlns:cxf="http://cxf.apache.org/blueprint/core"
+    xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
+    xmlns:cxfcore="http://cxf.apache.org/blueprint/core"
+    xmlns:camel="http://camel.apache.org/schema/blueprint"
     xsi:schemaLocation="
       http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
-      http://cxf.apache.org/blueprint/jaxrs http://cxf.apache.org/schemas/blueprint/jaxrs.xsd
-      http://cxf.apache.org/blueprint/core http://cxf.apache.org/schemas/blueprint/core.xsd">
+       http://camel.apache.org/schema/blueprint/cxf http://camel.apache.org/schema/blueprint/cxf/camel-cxf.xsd
+      http://cxf.apache.org/blueprint/core http://cxf.apache.org/schemas/blueprint/core.xsd
+      http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
 
     <!--
-      The <jaxrs:server/> element sets up our JAX-RS services.  It defines:
+      The <cxf:server/> element sets up our JAX-RS services.  It defines:
       - the server's address, '/crm', relative to the default CXF servlet URI
         with the default settings, the server will be running on 'http://localhost:8181/cxf/crm'
       - a list of service beans
         in this example, we refer to another bean defined in this Blueprint XML file with a <ref/> element
     -->
-    <jaxrs:server id="customerService" address="/crm">
-        <jaxrs:serviceBeans>
+    <cxf:rsServer id="customerService" address="/crm">
+        <cxf:serviceBeans>
             <ref component-id="customerSvc"/>
-        </jaxrs:serviceBeans>
-        <jaxrs:providers>
+        </cxf:serviceBeans>
+        <cxf:providers>
            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
            <bean class="io.fabric8.quickstarts.rest.JpegProvider"/>
-        </jaxrs:providers>
-    </jaxrs:server>
+        </cxf:providers>
+    </cxf:rsServer>
  
-    <cxf:bus>
-        <cxf:features>
-          <cxf:logging />
-        </cxf:features>
-    </cxf:bus>
+    <cxfcore:bus>
+        <cxfcore:features>
+          <cxfcore:logging />
+        </cxfcore:features>
+    </cxfcore:bus>
 
 
     <!--
@@ -61,4 +63,7 @@
     -->
     <bean id="customerSvc" class="io.fabric8.quickstarts.rest.CustomerService"/>
 
+    <camel:camelContext id="camel">
+
+    </camel:camelContext>
 </blueprint>

@@ -177,6 +177,33 @@
         <artifactId>cxf-rt-transports-http-jetty</artifactId>
       </dependency>
 
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-blueprint</artifactId>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-cxf</artifactId>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-test-blueprint</artifactId>
+        <scope>test</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.fileinstall</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>biz.aQute</groupId>
+            <artifactId>bndlib</artifactId>
+          </exclusion>
+        </exclusions>
+
+      </dependency>
+
   </dependencies>
 
     <build>
