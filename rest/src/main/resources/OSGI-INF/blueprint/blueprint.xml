@@ -23,11 +23,11 @@
    and the CXF JAX-RS namespaces.
 -->
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
-    xmlns:cxfcore="http://cxf.apache.org/blueprint/core"
-    xmlns:camel="http://camel.apache.org/schema/blueprint"
-    xsi:schemaLocation="
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
+           xmlns:cxfcore="http://cxf.apache.org/blueprint/core"
+           xmlns:camel="http://camel.apache.org/schema/blueprint"
+           xsi:schemaLocation="
       http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
        http://camel.apache.org/schema/blueprint/cxf http://camel.apache.org/schema/blueprint/cxf/camel-cxf.xsd
       http://cxf.apache.org/blueprint/core http://cxf.apache.org/schemas/blueprint/core.xsd
@@ -40,19 +40,20 @@
       - a list of service beans
         in this example, we refer to another bean defined in this Blueprint XML file with a <ref/> element
     -->
-    <cxf:rsServer id="customerService" address="/crm">
+    <cxf:rsServer id="customerService" address="/crm" serviceClass="">
+
         <cxf:serviceBeans>
-            <ref component-id="customerSvc"/>
-        </cxf:serviceBeans>
+<!--          <ref bean="customerSvc" /> -->
+       </cxf:serviceBeans>
         <cxf:providers>
-           <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
-           <bean class="io.fabric8.quickstarts.rest.JpegProvider"/>
+            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
+            <bean class="io.fabric8.quickstarts.rest.JpegProvider"/>
         </cxf:providers>
     </cxf:rsServer>
- 
+
     <cxfcore:bus>
         <cxfcore:features>
-          <cxfcore:logging />
+            <cxfcore:logging />
         </cxfcore:features>
     </cxfcore:bus>
 
@@ -63,7 +64,13 @@
     -->
     <bean id="customerSvc" class="io.fabric8.quickstarts.rest.CustomerService"/>
 
-    <camel:camelContext id="camel">
 
+    <camel:camelContext id="camel">
+        <!--
+        <camel:route id="test1">
+            <camel:from uri="cxfrx://bean://:customerService"/>
+        </camel:route>
+        -->
     </camel:camelContext>
+
 </blueprint>
